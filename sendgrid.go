@@ -8,7 +8,7 @@ import (
 	"time"
 
 	"github.com/sendgrid/rest" // depends on version 2.2.0
-	"github.com/sendgrid/sendgrid-go/helpers/mail"
+	"github.com/separovichabel/sendgrid-go/helpers/mail"
 )
 
 // Version is this client library's current version
@@ -32,8 +32,8 @@ func GetRequest(key string, endpoint string, host string) rest.Request {
 	baseURL := host + endpoint
 	requestHeaders := map[string]string{
 		"Authorization": "Bearer " + key,
-		"User-Agent": "sendgrid/" + Version + ";go",
-		"Accept": "application/json",
+		"User-Agent":    "sendgrid/" + Version + ";go",
+		"Accept":        "application/json",
 	}
 	request := rest.Request{
 		BaseURL: baseURL,

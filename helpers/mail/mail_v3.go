@@ -171,6 +171,21 @@ func NewV3MailInit(from *Email, subject string, to *Email, content ...*Content) 
 	return m
 }
 
+// NewV3MailInitBCCs ...
+func NewV3MailInitBCCs(from *Email, subject string, to *Email, BCCs []*Email, content ...*Content) *SGMailV3 {
+	m := new(SGMailV3)
+	m.SetFrom(from)
+	m.Subject = subject
+	p := NewPersonalization()
+	p.AddTos(to)
+	for _, BCC := range BCCs {
+		p.AddBCCs(BCC)
+	}
+	m.AddPersonalizations(p)
+	m.AddContent(content...)
+	return m
+}
+
 // GetRequestBody ...
 func GetRequestBody(m *SGMailV3) []byte {
 	b, err := json.Marshal(m)
